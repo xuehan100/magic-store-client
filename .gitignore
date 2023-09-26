@@ -1,0 +1,25 @@
+# Next.js
+/.next/
+/out/
+
+# Dependencies
+/node_modules/
+package-lock.json
+
+# Cache and logs
+/.cache/
+/.next-server/
+
+# Editor/IDE specific files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Compiled output
+/build/
