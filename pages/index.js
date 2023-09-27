@@ -1,6 +1,11 @@
 import { CURRENT_USER_API_PATH } from "../constants";
 import buildClient from "../api/buildClient";
 
+/**
+ * index.js is the default entry point for a Next.js page.
+ *  When a user accesses the root URL of your application (e.g., https://example.com/),
+ * Next.js will render the index.js page by default.
+ */
 const LandingPage = ({ currentUser }) => {
   return currentUser ? (
     <h1>You are signed in</h1>
@@ -10,20 +15,10 @@ const LandingPage = ({ currentUser }) => {
 };
 
 LandingPage.getInitialProps = async (context) => {
-  console.log("LANDING PAGE!");
-  let response;
+  console.log("Landing Page");
   const client = buildClient(context);
-  /**
-   * add a try catch block here in case of 401 unauthorized error due to the missing cookie in request headers
-   * we need to make sure our client still works even though there is no cookie set
-   * return an empty object if the cookie is not set
-   */
-  try {
-    response = await client.get(CURRENT_USER_API_PATH);
-    return response.data;
-  } catch (err) {
-    return {};
-  }
+  const { data } = await client.get(CURRENT_USER_API_PATH);
+  return data;
 };
 
 export default LandingPage;
