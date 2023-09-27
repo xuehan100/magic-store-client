@@ -11,10 +11,19 @@ const LandingPage = ({ currentUser }) => {
 
 LandingPage.getInitialProps = async (context) => {
   console.log("LANDING PAGE!");
+  let response;
   const client = buildClient(context);
-  const { data } = await client.get(CURRENT_USER_API_PATH);
-
-  return data;
+  /**
+   * add a try catch block here in case of 401 unauthorized error due to the missing cookie in request headers
+   * we need to make sure our client still works even though there is no cookie set
+   * return an empty object if the cookie is not set
+   */
+  try {
+    response = await client.get(CURRENT_USER_API_PATH);
+    return response.data;
+  } catch (err) {
+    return {};
+  }
 };
 
 export default LandingPage;
