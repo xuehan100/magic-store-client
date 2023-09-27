@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import buildClient from "../api/buildClient";
 import { CURRENT_USER_API_PATH } from "../constants";
+import Header from "../components/header";
 
 /**
  * define custom app component to wrap other components in order to include global CSS into project
@@ -11,7 +12,7 @@ import { CURRENT_USER_API_PATH } from "../constants";
 const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
-      <h1>Todo: Tab {currentUser.email}</h1>
+      <Header currentUser={currentUser} />
       <Component {...pageProps} />
     </div>
   );
